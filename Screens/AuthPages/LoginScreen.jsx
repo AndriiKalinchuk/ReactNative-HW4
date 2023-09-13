@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Dimensions, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import {
   View,
   ImageBackground,
@@ -15,6 +17,7 @@ import {
 import backgroundImg from "../../assets/img/background.jpg";
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,6 +37,7 @@ const LoginScreen = () => {
     console.log({ email, password });
 
     handleKeyboardHide();
+    navigation.navigate("Home", { user: { email, password } });
     clearUserForm();
   };
 
@@ -110,7 +114,10 @@ const LoginScreen = () => {
             <TouchableOpacity style={styles.btn} onPress={onSubmitUserRegister}>
               <Text style={styles.btnText}>Увійти</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.link}>
+            <TouchableOpacity
+              style={styles.link}
+              onPress={() => navigation.navigate("Registration")}
+            >
               <Text style={styles.linkText}>
                 Немає акаунту?{" "}
                 <Text style={styles.linkTextUnderline}>Зареєструватися</Text>
