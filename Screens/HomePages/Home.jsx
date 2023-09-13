@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   btnTab: {
     alignSelf: "center",
     marginRight: 30,
-    width: 40,
+    width: 70,
     height: 40,
 
     paddingVertical: 8,

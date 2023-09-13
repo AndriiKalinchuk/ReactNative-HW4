@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   loadWrapperText: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: 16,
     lineHeight: 19,
 
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: 16,
 
     textAlign: "center",

@@ -11,7 +11,10 @@ const PostScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.avatarWrapper}>
-        <Image style={styles.avatarImg} />
+        <Image
+          style={styles.avatarImg}
+          source={require("../../assets/img/avatar.png")}
+        />
         <View>
           <Text style={styles.avatarName}>Natali Romanova</Text>
           <Text style={styles.avatarEmail}>email@example.com</Text>
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
   avatarName: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    fontWeight: 700,
+    fontWeight: "700",
     fontSize: 13,
     lineHeight: 15,
 
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
   avatarEmail: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: 11,
     lineHeight: 13,
 
