@@ -65,6 +65,10 @@ const CreatePostsScreen = () => {
     setCurrentFocused("");
     Keyboard.dismiss();
   };
+  const handleGoBack = () => {
+    clearForm();
+    navigation.goBack();
+  };
   return (
     <TouchableWithoutFeedback onPress={handleKeyboardHide}>
       <View
@@ -151,6 +155,9 @@ const CreatePostsScreen = () => {
           >
             Опубліковати
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnTrash} onPress={handleGoBack}>
+          <SvgTrash stroke={"#dbdbdb"} />
         </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
@@ -256,8 +263,8 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   btn: {
-    marginTop: 32,
-    marginBottom: 120,
+    marginTop: 20,
+    // marginBottom: 16,
 
     paddingVertical: 16,
 
@@ -273,5 +280,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
 
     color: "#bdbdbd",
+  },
+  btnTrash: {
+    alignSelf: "center",
+    alignItems: "center",
+
+    width: 70,
+    height: 40,
+
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+
+    backgroundColor: "#f6f6f6",
+    borderRadius: 20,
+
+    marginTop: 28,
+    // backgroundColor: props.accessibilityState.selected ? '#f6f6f6' : '#ff6c00',
   },
 });

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PostScreen from "../MainPages/PostsScreen";
 import CreatePostsScreen from "../MainPages/CreatePostsScreen";
@@ -8,13 +8,14 @@ import SvgLogOut from "../../assets/svg/SvgLogOut";
 import SvgGrid from "../../assets/svg/SvgGrid";
 import SvgPlus from "../../assets/svg/SvgPlus";
 import SvgUser from "../../assets/svg/SvgUser";
-import { TouchableOpacity } from "react-native";
+import SvgTrash from "../../assets/svg/SvgTrash";
 
 const BottomTabs = createBottomTabNavigator();
 
 const Home = () => {
   return (
     <BottomTabs.Navigator
+      id="home"
       screenOptions={{
         tabBarStyle: {
           height: 64,
@@ -24,9 +25,7 @@ const Home = () => {
           alignContent: "center",
           justifyContent: "center",
         },
-        tabBarLabelStyle: {
-          display: "none",
-        },
+        tabBarShowLabel: false,
         tabBarActiveTintColor: "#ff6c00",
         tabBarInactiveTintColor: "#212121",
       }}
@@ -47,20 +46,21 @@ const Home = () => {
           tabBarButton: (props) => (
             <TouchableOpacity {...props} style={styles.btnTab} />
           ),
-          tabBarIcon: ({ color }) => {
-            return <SvgGrid stroke={color} />;
+          tabBarIcon: () => {
+            return <SvgGrid />;
           },
         })}
       />
       <BottomTabs.Screen
         name="CreatePosts"
         component={CreatePostsScreen}
-        options={({ navigation, route }) => ({
+        options={({ navigation }) => ({
+          tabBarStyle: { display: "none" },
           ...createPostsOptions,
           headerLeft: () => (
             <SvgArrowLeft
               onPress={() => {
-                navigation.navigate("Posts");
+                navigation.goBack();
               }}
               title="Return back"
               color="#fff"
@@ -72,12 +72,18 @@ const Home = () => {
               {...props}
               style={{
                 ...styles.btnTab,
-                backgroundColor: "#ff6c00",
+                backgroundColor: props.accessibilityState.selected
+                  ? "#f6f6f6"
+                  : "#ff6c00",
               }}
             />
           ),
-          tabBarIcon: () => {
-            return <SvgPlus fill={"#ffffff"} />;
+          tabBarIcon: ({ focused }) => {
+            return focused ? (
+              <SvgTrash stroke={"#dbdbdb"} />
+            ) : (
+              <SvgPlus fill={"#ffffff"} />
+            );
           },
         })}
       />
@@ -86,6 +92,7 @@ const Home = () => {
         component={ProfileScreen}
         options={({ navigation, route }) => ({
           ...createPostsOptions,
+          headerShown: false,
           headerLeft: () => (
             <SvgArrowLeft
               onPress={() => navigation.navigate("Posts")}
@@ -103,8 +110,8 @@ const Home = () => {
               }}
             />
           ),
-          tabBarIcon: ({ focused, color, size }) => {
-            return <SvgUser size={size} fill={color} />;
+          tabBarIcon: () => {
+            return <SvgUser />;
           },
         })}
       />
@@ -115,11 +122,6 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
   arrowLeft: {
     marginLeft: 16,
     marginRight: 42,
@@ -129,9 +131,7 @@ const styles = StyleSheet.create({
   logOut: {
     width: 24,
     height: 24,
-    marginRight: 60,
     marginRight: 16,
-    // paddingHorizontal: 16,
     paddingVertical: 10,
   },
   btnTab: {
@@ -146,19 +146,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     borderRadius: 20,
   },
-  // btnActiveTab: {
-  //   alignSelf: 'center',
-  //   marginRight: 30,
-
-  //   width: 70,
-  //   height: 40,
-
-  //   paddingVertical: 8,
-  //   paddingHorizontal: 23,
-
-  //   backgroundColor: '#ff6c00',
-  //   borderRadius: 20,
-  // },
 });
 
 const createPostsOptions = {

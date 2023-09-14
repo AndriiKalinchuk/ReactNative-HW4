@@ -77,7 +77,10 @@ const RegistrationScreen = () => {
         <ImageBackground source={backgroundImg} style={styles.bgContainer}>
           <View style={styles.contentWrapper}>
             <View style={styles.avatarWrapper}>
-              <Image style={styles.avatar} source={avatar} />
+              <Image
+                style={styles.avatar}
+                source={avatar ? { uri: avatar.uri } : null}
+              />
               <TouchableOpacity
                 style={avatar ? styles.btnAddAvatarLoad : styles.btnAddAvatar}
                 onPress={onLoadAvatar}
