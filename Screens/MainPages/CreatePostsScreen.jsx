@@ -78,7 +78,10 @@ const CreatePostsScreen = () => {
         }}
       >
         <View style={styles.loadWrapper}>
-          <ImageBackground style={styles.bgImage} source={postImg}>
+          <ImageBackground
+            style={styles.bgImage}
+            source={postImg ? { uri: postImg.uri } : null}
+          >
             <TouchableOpacity
               style={{
                 ...styles.loadBtn,

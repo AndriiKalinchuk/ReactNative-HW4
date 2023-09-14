@@ -21,3 +21,9 @@
 Макет компонента CreatePostsScreen при переході на компонент Homework (Copy) (Copy)
 Макет компонента ProfileScreen Homework (Copy) (Copy)
 Інтерактивний приклад навігації в застосунку Homework (Copy) (Copy)
+
+![posts](assets/screenshots/14.09.2023_14.44.11_REC.png)
+![create post](assets/screenshots/14.09.2023_14.24.51_REC.png)
+![profile](assets/screenshots/14.09.2023_14.45.00_REC.png)
+
+<video src="assets/screenshots/14.09.2023_14.49.47_REC.mp4" controls title="Title"></video>
